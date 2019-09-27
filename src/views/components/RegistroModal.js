@@ -34,8 +34,10 @@ class RegistroModal extends React.Component {
      */
     handleSubmit(event) {
         event.preventDefault();
+        let input = this.state.input;
 
         // handle http request
+        console.log(input);
     }
 
     render() {
@@ -92,7 +94,7 @@ class RegistroModal extends React.Component {
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-light" data-dismiss="modal">Cerrar</button>
-                                <button type="button" className="btn btn-success">Registrarme !</button>
+                                <button type="submit" className="btn btn-success">Registrarme !</button>
                             </div>
                         </form>
                     </div>

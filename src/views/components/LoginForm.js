@@ -26,6 +26,16 @@ class LoginForm extends React.Component {
         }));
     }
 
+    /**
+     * @param {React.FormEvent<HTMLFormElement>} event
+     */
+    handleSubmit(event) {
+        event.preventDefault();
+        let input = this.state.input;
+
+        console.log(input);
+    }
+
     render() {
         let errors = this.state.errors;
 
@@ -33,10 +43,10 @@ class LoginForm extends React.Component {
             <div className="rounded bg-white p-4">
                 <h3>Iniciar sesión</h3>
                 <br></br>
-                <form>
+                <form onSubmit={e => this.handleSubmit(e)}>
                     <div className="form-group">
                         <input
-                            type="text"
+                            type="email"
                             name="email"
                             placeholder="Email"
                             className="form-control"
