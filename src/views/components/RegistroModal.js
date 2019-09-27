@@ -1,8 +1,10 @@
 //@ts-check
 import React from 'react';
-import { userInfo } from 'os';
 
 class RegistroModal extends React.Component {
+    /**
+     * @param {any} props
+     */
     constructor(props) {
         super(props);
         this.state = {
@@ -27,6 +29,15 @@ class RegistroModal extends React.Component {
         }));
     };
 
+    /**
+     * @param {React.FormEvent<HTMLFormElement>} event
+     */
+    handleSubmit(event) {
+        event.preventDefault();
+
+        // handle http request
+    }
+
     render() {
         let errors = this.state.errors;
 
@@ -37,7 +48,7 @@ class RegistroModal extends React.Component {
                         <div className="modal-header">
                             <h5 className="modal-title" id="registroModalLabel">REGISTRO</h5>
                         </div>
-                        <form>
+                        <form onSubmit={e => this.handleSubmit(e)}>
                             <div className="modal-body">
                                 <div className="form-group">
                                     <label>Nombre</label>
