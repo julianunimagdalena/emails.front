@@ -16,11 +16,11 @@ class Nav extends React.Component {
     }
 
     render() {
-        let isBandejaEntrada = this.props.isBandejaEntrada;
+        let { isBandejaEntrada, user } = this.props;
 
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <span className="navbar-brand">Navbar</span>
+                <span className="navbar-brand">MI EMAIL</span>
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -55,9 +55,13 @@ class Nav extends React.Component {
                             </div>
                         </li>
                         <li className="nav-item">
-                            <span className="nav-link" onClick={this.props.mensaje()}>Nuevo mensaje</span>
+                            <span className="nav-link" onClick={this.props.nuevoMensaje()}>Nuevo mensaje</span>
                         </li>
                     </ul>
+                    <div className="nav-item ml-auto">
+                        {user.nombre} |
+                        <button className="btn btn-link text-danger btn-sm" onClick={() => this.props.cerrarSesion()}>Cerrar sesión</button>
+                    </div>
                 </div>
             </nav>
         );

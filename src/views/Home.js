@@ -34,8 +34,10 @@ class Home extends React.Component {
             <div>
                 <Nav
                     isBandejaEntrada={isBandejaEntrada}
+                    user={user}
                     toggle={value => this.toggleBandejaEntrada(value)}
-                    mensaje={() => this.verCorreo()}
+                    nuevoMensaje={() => this.verCorreo()}
+                    cerrarSesion={() => this.props.cerrarSesion()}
                 ></Nav>
             </div>
         );

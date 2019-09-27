@@ -17,13 +17,19 @@ class App extends React.Component {
         };
     }
 
+    cerrarSesion() {
+        this.setState({
+            authUser: null
+        });
+    }
+
     render() {
         let user = this.state.authUser;
 
         return (
             <Router>
                 <Route path="/" exact render={() => <Login user={user}></Login>}></Route>
-                <Route path="/home" render={() => <Home user={user}></Home>}></Route>
+                <Route path="/home" render={() => <Home user={user} cerrarSesion={() => this.cerrarSesion()}></Home>}></Route>
             </Router>
         );
     }
