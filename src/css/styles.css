@@ -1,0 +1,7 @@
+.cover {
+    height: 100%;
+}
+
+.cover > .row {
+    width: 100%;
+}
