@@ -11,7 +11,7 @@ class App extends React.Component {
         this.state = {
             // authUser: null
             authUser: {
-                nombre: 'JULIAN PITRE',
+                nombre: 'JULIAN PITRE POLO',
                 email: 'julian@miemail.com'
             }
         };
