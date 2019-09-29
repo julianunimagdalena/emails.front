@@ -55,12 +55,14 @@ class Nav extends React.Component {
                             </div>
                         </li>
                         <li className="nav-item">
-                            <span className="nav-link" onClick={this.props.nuevoMensaje()}>Nuevo mensaje</span>
+                            <span className="nav-link" onClick={this.props.handleClick()}>Nuevo mensaje</span>
                         </li>
                     </ul>
                     <div className="nav-item ml-auto">
                         {user.nombre} |
-                        <button className="btn btn-link text-danger btn-sm" onClick={() => this.props.cerrarSesion()}>Cerrar sesión</button>
+                        <button className="btn btn-link text-danger btn-sm" onClick={() => this.props.cerrarSesion()}>
+                            Cerrar sesión
+                        </button>
                     </div>
                 </div>
             </nav>
