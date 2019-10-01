@@ -6,20 +6,39 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '../../css/styles.css';
 
 class Bandeja extends React.Component {
-    handleClick(mensaje) {
+    /**
+     * @param {React.MouseEvent<HTMLLIElement, MouseEvent>} event
+     * @param {any} mensaje
+     */
+    handleClick(event, mensaje) {
+        let className = 'activo';
+        let liList = document.querySelectorAll('li.mensaje');
+        liList.forEach(li => li.classList.remove(className));
+
+        let li = event.target;
+        li.classList.add(className);
+
         this.props.handleClick(mensaje);
     }
 
     render() {
         let mensajes = this.props.mensajes;
+        let { actualizar, isBandejaEntrada } = this.props;
 
         return (
             <ul className="list-group">
                 <li className="list-group-item">
-                    <button className="btn btn-link">Actualizar</button>
+                    <button className="btn btn-link" onClick={() => actualizar()}>Actualizar</button>
                 </li>
                 {mensajes.length > 0 ? mensajes.map(msj => (
-                    <li className="list-group-item" onClick={() => this.handleClick(msj)}>{msj.titulo}</li>
+                    <li key={msj.id} className="list-group-item mensaje" onClick={e => this.handleClick(e, msj)}>
+                        <span className="font-weight-bold">{msj.titulo}</span>
+                        <br />
+                        <small className="text-muted">
+                            <span className="font-weight-bold">{isBandejaEntrada ? 'De:' : 'Para:'} </span>
+                            {msj.persona}
+                        </small>
+                    </li>
                 )) : ''}
             </ul>
         );

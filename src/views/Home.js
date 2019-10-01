@@ -7,12 +7,38 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 import Nav from './components/Nav';
 import Bandeja from './components/Bandeja';
+import EditarMensaje from './components/EditarMensaje';
 
+/**
+ * @param {boolean} isBandejaEntrada
+ */
 async function fetchMensajes(isBandejaEntrada) {
-    return [{
-        titulo: 'Work',
-        persona: 'Camilo'
-    }];
+    let mensajes = [];
+
+    if (isBandejaEntrada) {
+        mensajes = [{
+            id: 1,
+            titulo: 'Work',
+            persona: 'Camilo'
+        }];
+    }
+    else {
+        mensajes = [{
+            id: 2,
+            titulo: 'Bad things...',
+            persona: 'el york'
+        }];
+    }
+
+    return mensajes;
+}
+
+async function fetchMensaje(id) {
+    let mensaje;
+
+    if (id === 1) mensaje = {
+        
+    }
 }
 
 class Home extends React.Component {
@@ -25,21 +51,24 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
+        this.actualizarCorreo();
+    }
+
+    actualizarCorreo() {
         let { isBandejaEntrada } = this.state;
-        let mensajes;
 
-        fetchMensajes(isBandejaEntrada).then(mensajes => {
-
-        });
-        this.setState({
-            mensajes: 
-        });
+        fetchMensajes(isBandejaEntrada).then(mensajes => this.setState({
+            mensajes: mensajes
+        }));
     }
 
     toggleBandejaEntrada(value) {
-        this.setState({
-            isBandejaEntrada: value === 'true'
-        });
+        let isBandejaEntrada = value === 'true';
+
+        fetchMensajes(isBandejaEntrada).then(mensajes => this.setState({
+            isBandejaEntrada: isBandejaEntrada,
+            mensajes: mensajes
+        }));
     }
 
     verCorreo(mensaje) {
@@ -47,9 +76,8 @@ class Home extends React.Component {
     }
 
     render() {
-        let { isBandejaEntrada } = this.state;
+        let { isBandejaEntrada, mensajes } = this.state;
         let { user } = this.props;
-        let mensajes = this.state.mensajes;
 
         if (!user) return <Redirect to="/"></Redirect>;
 
@@ -64,10 +92,15 @@ class Home extends React.Component {
                 ></Nav>
                 <div className="row h-100 mr-0">
                     <div className="col-md-3 p-0 border-right">
-                        <Bandeja mensajes={mensajes} handleClick={msj => this.verCorreo(msj)}></Bandeja>
+                        <Bandeja
+                            mensajes={mensajes}
+                            isBandejaEntrada={isBandejaEntrada}
+                            handleClick={msj => this.verCorreo(msj)}
+                            actualizar={() => this.actualizarCorreo()}
+                        ></Bandeja>
                     </div>
                     <div className="col-md-9 p-0">
-                        b
+                        <EditarMensaje></EditarMensaje>
                     </div>
                 </div>
             </div>

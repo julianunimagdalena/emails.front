@@ -46,16 +46,16 @@ class Nav extends React.Component {
                                 Viendo: bandeja de {isBandejaEntrada ? 'entrada' : 'salida'}
                             </span>
                             <div className="dropdown-menu" aria-labelledby="tipoBandejaLink">
-                                <span className="dropdown-item" data-value={true} onClick={e => this.toggleValue(e)}>
+                                <span className="dropdown-item" data-value="true" onClick={e => this.toggleValue(e)}>
                                     Bandeja de entrada
                                 </span>
-                                <span className="dropdown-item" data-value={false} onClick={e => this.toggleValue(e)}>
+                                <span className="dropdown-item" data-value="false" onClick={e => this.toggleValue(e)}>
                                     Bandeja de salida
                                 </span>
                             </div>
                         </li>
                         <li className="nav-item">
-                            <span className="nav-link" onClick={this.props.handleClick()}>Nuevo mensaje</span>
+                            <span className="nav-link" onClick={() => this.props.handleClick()}>Nuevo mensaje</span>
                         </li>
                     </ul>
                     <div className="nav-item ml-auto">
