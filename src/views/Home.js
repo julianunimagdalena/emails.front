@@ -37,8 +37,31 @@ async function fetchMensaje(id) {
     let mensaje;
 
     if (id === 1) mensaje = {
-        
+        id: 1,
+        titulo: 'Work',
+        emisor: {
+            nombre: 'CAMILO',
+            email: 'camilo@miemail.com'
+        },
+        destinatarios: [{
+            nombre: 'JULIAN',
+            email: 'julian@miemail.com'
+        }]
     }
+    else if (id === 2) mensaje = {
+        id: 1,
+        titulo: 'Bad things...',
+        emisor: {
+            nombre: 'JULIAN',
+            email: 'julian@miemail.com'
+        },
+        destinatarios: [{
+            nombre: 'el york',
+            email: 'elyork@miemail.com'
+        }]
+    }
+
+    return mensaje;
 }
 
 class Home extends React.Component {
@@ -46,7 +69,8 @@ class Home extends React.Component {
         super(props);
         this.state = {
             isBandejaEntrada: true,
-            mensajes: []
+            mensajes: [],
+            mensajeActual: null
         };
     }
 
@@ -72,11 +96,18 @@ class Home extends React.Component {
     }
 
     verCorreo(mensaje) {
+        let { user } = this.props;
 
+        if (!mensaje) this.setState({
+            mensajeActual: { emisor: user }
+        });
+        else fetchMensaje(mensaje.id).then(msj => this.setState({
+            mensajeActual: msj
+        }));
     }
 
     render() {
-        let { isBandejaEntrada, mensajes } = this.state;
+        let { isBandejaEntrada, mensajes, mensajeActual } = this.state;
         let { user } = this.props;
 
         if (!user) return <Redirect to="/"></Redirect>;
@@ -100,7 +131,7 @@ class Home extends React.Component {
                         ></Bandeja>
                     </div>
                     <div className="col-md-9 p-0">
-                        <EditarMensaje></EditarMensaje>
+                        <EditarMensaje mensaje={mensajeActual}></EditarMensaje>
                     </div>
                 </div>
             </div>
